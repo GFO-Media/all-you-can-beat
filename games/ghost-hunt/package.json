@@ -1,0 +1,19 @@
+{
+  "name": "@ayb/ghost-hunt",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./meta": "./src/meta.ts",
+    "./types": "./src/types.ts",
+    "./flashlight": "./src/flashlight.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@ayb/game-sdk": "*",
+    "@ayb/shared": "*"
+  }
+}

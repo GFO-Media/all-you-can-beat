@@ -1,0 +1,22 @@
+{
+  "name": "all-you-can-beat",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "games/*"
+  ],
+  "scripts": {
+    "predev": "npm install",
+    "dev": "concurrently -n server,client -c yellow,cyan \"npm:dev:server\" \"npm:dev:client\"",
+    "dev:server": "npm run dev --workspace apps/server",
+    "dev:client": "npm run dev --workspace apps/client",
+    "build": "npm run build --workspace apps/client",
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "typescript": "^5.7.2"
+  }
+}
