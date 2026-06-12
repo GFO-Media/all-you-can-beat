@@ -23,12 +23,20 @@ const gameServer = new Server({
 gameServer.define("party", PartyRoom);
 
 void gameServer.listen(PORT).then(() => {
-  console.log(`[ayb] game server ready on ws://localhost:${PORT}`);
-  const nets = os.networkInterfaces();
-  for (const interfaces of Object.values(nets)) {
-    for (const net of interfaces ?? []) {
-      if (net.family === "IPv4" && !net.internal) {
-        console.log(`[ayb] LAN:                ws://${net.address}:${PORT}`);
+  console.log(`[ayb] game server ready on port ${PORT}`);
+  const publicUrl = process.env.RENDER_EXTERNAL_URL;
+  if (publicUrl) {
+    const host = new URL(publicUrl).host;
+    console.log(`[ayb] public endpoint:    wss://${host}`);
+    console.log(`[ayb] health check:       ${publicUrl}/health`);
+  } else {
+    console.log(`[ayb] local:              ws://localhost:${PORT}`);
+    const nets = os.networkInterfaces();
+    for (const interfaces of Object.values(nets)) {
+      for (const net of interfaces ?? []) {
+        if (net.family === "IPv4" && !net.internal) {
+          console.log(`[ayb] LAN:                ws://${net.address}:${PORT}`);
+        }
       }
     }
   }

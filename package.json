@@ -13,6 +13,8 @@
     "dev:server": "npm run dev --workspace apps/server",
     "dev:client": "npm run dev --workspace apps/client",
     "build": "npm run build --workspace apps/client",
+    "deploy": "npm run build && npm run deploy --workspace @ayb/client",
+    "start:server": "npm run start --workspace @ayb/server",
     "typecheck": "npm run typecheck --workspaces --if-present"
   },
   "devDependencies": {

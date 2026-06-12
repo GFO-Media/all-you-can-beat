@@ -1,0 +1,17 @@
+# Free Colyseus test server on Render (spins down after ~15 min idle).
+# Dashboard: https://dashboard.render.com → New → Blueprint → connect this repo.
+#
+# After deploy, copy the service URL and set in Cloudflare Pages:
+#   VITE_SERVER_URL = wss://ayb-game-server.onrender.com
+services:
+  - type: web
+    name: ayb-game-server
+    runtime: node
+    plan: free
+    region: frankfurt
+    buildCommand: npm install
+    startCommand: npm run start:server
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
